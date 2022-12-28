@@ -1,5 +1,6 @@
-const {config} = require('dotenv')
-config()
+const dotenv = require('dotenv')
+dotenv.config()
+console.log(dotenv)
 const morgan = require('morgan');
 
 const express = require('express')
