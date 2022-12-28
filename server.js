@@ -1,11 +1,8 @@
 const dotenv = require('dotenv')
 dotenv.config()
-
 const morgan = require('morgan');
-
 const express = require('express')
 const app = express()
-
 const port = process.env.PORT
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
