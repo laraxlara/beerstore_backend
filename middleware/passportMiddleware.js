@@ -1,6 +1,6 @@
 const db = require('../db')
 const passport = require('passport')
-const { Strategy } = require('passport-jwt')
+const { Strategy } = require('passport-local')
 
 const cookieExtractor = function (req) {
     let token = null
