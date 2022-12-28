@@ -1,4 +1,6 @@
 const db = require('../db')
+const dotenv = require('dotenv')
+dotenv.config()
 const passport = require('passport')
 const { Strategy } = require('passport-local')
 
