@@ -3,6 +3,7 @@ dotenv.config()
 const morgan = require('morgan');
 const express = require('express')
 const app = express()
+
 const cors = require('cors')
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
 
@@ -33,7 +34,7 @@ app.use('/api', postsRoutes)
 const appStart = () => {
     try {
         app.listen(process.env.SERVER_URL || port, () => {
-            console.log(`The app started on post ${port}`)
+            console.log(`The app started on port ${port}`)
         })
     } catch (error) {
         console.log(`Error: ${error.message}`)
