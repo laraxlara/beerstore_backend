@@ -2,14 +2,14 @@ const db = require('../db')
 const dotenv = require('dotenv')
 dotenv.config()
 const passport = require('passport')
-const { Strategy } = require('passport-jwt')
+const { Strategy } = require('passport-local')
 
 const cookieExtractor = function (req) {
     let token = null
     if (req && req.cookies) token = req.cookies['token']
     return token
 }
-  
+
 const opts = {
     secretOrKey: process.env.SECRET,
     jwtFromRequest: cookieExtractor,
