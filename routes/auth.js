@@ -4,6 +4,7 @@ const { registerValidation, loginValidation } = require('../validators/auth')
 const { validationMiddleware } = require('../middleware/validationMiddleware')
 const { customerAuth } = require('../middleware/authMiddleware')
 const {costumerAuth} = require('../middleware/authMiddleware')
+
 const router = Router()
 
 router.get('/get-customers', getCustomers)
