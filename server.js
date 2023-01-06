@@ -3,10 +3,7 @@ dotenv.config()
 const morgan = require('morgan');
 const express = require('express')
 const app = express()
-
 const cors = require('cors')
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
-
 const port = process.env.PORT
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
@@ -16,6 +13,7 @@ require('./middleware/passportMiddleware')
 
 //middlewares
 app.use(express.json())
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
 app.use(morgan('tiny'))
 app.use(cookieParser())
 app.use(passport.initialize())

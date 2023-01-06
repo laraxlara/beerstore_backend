@@ -2,7 +2,7 @@ const db = require('../db')
 const dotenv = require('dotenv')
 dotenv.config()
 const passport = require('passport')
-const { Strategy } = require('passport-local')
+const { Strategy } = require('passport-jwt')
 
 const cookieExtractor = function (req) {
     let token = null

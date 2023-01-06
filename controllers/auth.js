@@ -18,7 +18,6 @@ exports.getCustomers = async (req, res) => {
 exports.registerCustomers = async (req, res) => {
     const { email, password } = req.body
     try {
-        console.log('Reg success')
         const hashedPassword = await hash(password, 10)
 
         await db.query('INSERT INTO customers (email, password) values ($1, $2)', [email, hashedPassword])
