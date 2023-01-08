@@ -44,7 +44,7 @@ exports.loginCustomers = async (req, res) => {
     }
     try {
         const token = await sign(payload, process.env.SECRET)
-        return res.status(200).cookie('token', token, { secure: isProd, sameSite: 'None', httpOnly: true, domain: config.server.domain }).json({
+        return res.status(200).cookie('token', token, { secure: isProd, sameSite: !isProd ? 'Lax' : 'None', httpOnly: true }).json({
             success: true,
             message: 'Logged in successfully'
         })
