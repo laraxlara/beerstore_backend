@@ -1,6 +1,5 @@
 const { Pool } = require('pg')
-const dotenv = require('dotenv')
-dotenv.config()
+const config = require('../config');
 
 const pool = new Pool({
     user: process.env.PGUSER,
@@ -8,7 +7,7 @@ const pool = new Pool({
     database: process.env.PGDATABASE,
     password: process.env.PGPASSWORD,
     port: process.env.PGPORT,
-    ssl: true
+    ssl: config.environment === 'production'
 })
 
 module.exports = {

@@ -1,6 +1,7 @@
 const db = require('../db')
 const {hash} = require('bcrypt')
 const {sign} = require('jsonwebtoken')
+const config = require('../config');
 
 exports.getCustomers = async (req, res) => {
     try {
@@ -42,7 +43,7 @@ exports.loginCustomers = async (req, res) => {
     }
     try {
         const token = await sign(payload, process.env.SECRET)
-        return res.status(200).cookie('token', token, {httpOnly: true}).json({
+        return res.status(200).cookie('token', token, { httpOnly: true, domain: config.server.domain }).json({
             success: true,
             message: 'Logged in successfully'
         })
@@ -66,7 +67,7 @@ exports.protectedRoute = async (req, res) => {
 
 exports.logoutCustomers = async (req, res) => {
     try {
-        return res.status(200).clearCookie('token', {httpOnly: true }).json({
+        return res.status(200).clearCookie('token', { httpOnly: true }).json({
             success: true,
             message: 'Logged out successfully'
         })
