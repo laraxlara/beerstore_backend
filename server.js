@@ -9,14 +9,16 @@ const cookieParser = require('cookie-parser')
 const passport = require('passport')
 
 require('./middleware/passportMiddleware')
-
+const config = require('./config');
 
 //middlewares
 app.use(express.json())
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
 app.use(morgan('tiny'))
 app.use(cookieParser())
+app.use(require('express-session')({ secret: config.server.secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize())
+app.use(passport.session())
 
 //add routes
 const authRoutes = require('./routes/auth') 

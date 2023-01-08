@@ -36,6 +36,7 @@ exports.registerCustomers = async (req, res) => {
 }
 
 exports.loginCustomers = async (req, res) => {
+    const isProd = config.environment === 'production'
     let customer = req.customer
     payload = {
         id: customer.customer_id,
@@ -43,7 +44,7 @@ exports.loginCustomers = async (req, res) => {
     }
     try {
         const token = await sign(payload, process.env.SECRET)
-        return res.status(200).cookie('token', token, { httpOnly: true, domain: config.server.domain }).json({
+        return res.status(200).cookie('token', token, { secure: isProd, sameSite: 'None', httpOnly: true, domain: config.server.domain }).json({
             success: true,
             message: 'Logged in successfully'
         })
